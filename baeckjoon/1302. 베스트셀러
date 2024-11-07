@@ -1,0 +1,30 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        Map<String, Integer> map = new HashMap<>();
+        int N = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            String title = br.readLine();
+            map.put(title, map.getOrDefault(title, 0) + 1);
+        }
+
+        String maxKey = "";
+        int maxValue = 0;
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            String key = entry.getKey();
+            int value = entry.getValue();
+            if (value > maxValue || (value == maxValue && key.compareTo(maxKey) < 0)) {
+                maxKey = key;
+                maxValue = value;
+            }
+        }
+
+        System.out.println(maxKey);
+    }
+}
