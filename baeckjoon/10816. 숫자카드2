@@ -1,0 +1,35 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+// The main method must be in a class named "Main".
+class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        
+        int N = Integer.parseInt(br.readLine());
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        String[] cards = br.readLine().split(" ");
+
+        for(int i=0; i<N; i++){
+            int num = Integer.parseInt(cards[i]);
+            map.put(num , map.getOrDefault(num, 0) + 1);
+        }
+
+        int M= Integer.parseInt(br.readLine());
+
+        String[] have = br.readLine().split(" ");
+    
+        for (int i = 0; i < M; i++) {
+            int num = Integer.parseInt(have[i]);
+            sb.append(map.getOrDefault(num, 0)).append(" ");
+        }
+        
+        System.out.print(sb.toString());
+       
+
+        
+    }
+}
