@@ -1,0 +1,39 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        
+        while(true){
+            String input = br.readLine();
+            if(input.equals("*"))
+                break;
+
+            if(Suprising(input)==true){
+                System.out.println(input+" is surprising.");
+            }
+            else{
+                System.out.println(input+" is NOT surprising.");
+            }
+        }
+    
+
+    }
+
+    private static boolean Suprising(String str){
+        for(int i=0; i<str.length()-1; i++){
+            HashMap<String, Integer> map = new HashMap<>();
+            for(int j=0; j+i<str.length()-1; j++){
+                String s=str.charAt(j)+""+str.charAt(j+i+1);
+
+                if(map.containsKey(s))
+                    return false;
+                map.put(s,1);
+            }
+        }
+        return true;
+    }
+}
