@@ -1,0 +1,49 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    static int arr[];
+    static int N;
+    static boolean arr_v[];
+    static int count;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+    
+        int T=Integer.parseInt(br.readLine());
+        
+
+        for(int i=0; i<T; i++){
+            N=Integer.parseInt(br.readLine());
+            arr=new int[N+1];
+            arr_v=new boolean[N+1];
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            count = 0;
+            for(int j=1; j<=N; j++){
+                arr[j]=Integer.parseInt(st.nextToken());
+            }
+            cycle();
+            System.out.println(count);
+        }
+    }
+
+    public static void cycle(){
+        for(int i=1; i<=N;i++){
+            if(arr_v[i]==false){
+                dfs(i);
+                count++;
+            }
+        }
+
+    }
+
+    public static void dfs(int start){
+        arr_v[start]=true;
+        int next=arr[start];
+        if(arr_v[next]==false){
+            dfs(next);
+        }
+    }
+    
+}
