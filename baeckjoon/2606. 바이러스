@@ -1,0 +1,53 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    static int C;
+    static int N;
+    static int input[][];
+    static boolean arr_v[];
+    static Queue<Integer> queue = new LinkedList<>();
+    static int count;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        
+        C = Integer.parseInt(br.readLine()); 
+        N = Integer.parseInt(br.readLine());
+
+        input = new int[C+1][C+1];
+        arr_v = new boolean[C+1];
+
+        for(int i=0; i<N; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a=Integer.parseInt(st.nextToken());
+            int b=Integer.parseInt(st.nextToken());
+            input[a][b]=1;
+            input[b][a]=1;
+        }
+
+        count=0;
+        bfs();
+        System.out.println(count);
+    
+    }
+
+    
+    public static void bfs(){
+        arr_v[1]=true;
+        queue.offer(1);
+
+        while(!queue.isEmpty()){
+            int s=queue.poll();
+            for(int i=1; i<=C; i++){
+                if(arr_v[i]==false && input[s][i]==1){
+                    queue.offer(i);
+                    arr_v[i] = true;
+                    count++;
+                }
+            }
+        }
+    }
+    
+}
