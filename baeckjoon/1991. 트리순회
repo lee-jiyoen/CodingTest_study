@@ -1,0 +1,80 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+
+class Node{
+    char data;
+    Node left;
+    Node right;
+    
+    public Node(char data){
+        this.data = data;
+        this.left = null;
+        this.right=null;
+
+    }
+}
+class Main {
+    static Node[] tree;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(br.readLine());
+        tree=new Node[N+1];
+
+        for(int i=0; i<N; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            char parent_d=st.nextToken().charAt(0);
+            char left_d=st.nextToken().charAt(0);
+            char right_d=st.nextToken().charAt(0);
+
+            if(tree[parent_d-'A']==null){
+                tree[parent_d-'A']=new Node(parent_d);
+            }
+            if(left_d != '.'){
+                tree[left_d-'A']=new Node(left_d);
+                tree[parent_d-'A'].left=tree[left_d-'A'];
+            }
+            if(right_d != '.'){
+                tree[right_d-'A']=new Node(right_d);
+                tree[parent_d-'A'].right=tree[right_d-'A'];
+            }
+
+            
+        }
+
+        preorder(tree[0]);
+        System.out.println();
+
+        inorder(tree[0]);
+        System.out.println();
+
+        postorder(tree[0]);
+        System.out.println();
+
+        
+    }
+
+    public static void preorder(Node node){
+        if(node==null)
+            return;
+        System.out.print(node.data);
+        preorder(node.left);
+        preorder(node.right);
+    }
+    public static void inorder(Node node){
+        if(node==null)
+            return;
+        inorder(node.left);
+        System.out.print(node.data);
+        inorder(node.right);
+    }
+    public static void postorder(Node node){
+        if(node==null)
+            return;
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.data);
+    }
+}
