@@ -1,0 +1,28 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] str = br.readLine().split("-"); 
+        int total = 0;
+
+        for (int i = 0; i < str.length; i++) {
+            int temp = 0;
+            String[] add = str[i].split("\\+"); 
+
+            for (int j = 0; j < add.length; j++) {
+                temp += Integer.parseInt(add[j]);
+            }
+
+            if (i == 0) {
+                total += temp;
+            } else {
+                total -= temp;
+            }
+        }
+
+        System.out.println(total);
+    }
+}
