@@ -1,0 +1,26 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		int N = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
+
+        int[] arr=new int[N];
+
+        for(int i=0; i<N; i++){
+            arr[i]=Integer.parseInt(br.readLine());
+        }
+
+        int total=0;
+        for(int j=N-1; j>=0; j--){
+            total+=K/arr[j];
+            K%=arr[j];
+        }
+        System.out.println(total);
+    }
+}
